@@ -70,6 +70,7 @@ Other Parameters:
 \code{\link{Param_delta}},
 \code{\link{Param_mean}},
 \code{\link{Param_stratified}},
+\code{\link{Param_survival}},
 \code{\link{define_param}()},
 \code{\link{tmle3_Fit}}
 }
