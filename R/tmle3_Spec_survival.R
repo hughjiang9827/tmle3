@@ -12,7 +12,7 @@ tmle3_Spec_survival <- R6Class(
   class = TRUE,
   inherit = tmle3_Spec,
   public = list(
-    initialize = function(treatment_level, control_level, target_times = NULL, variable_types = NULL,...) {
+    initialize = function(treatment_level, control_level = NULL, target_times = NULL, variable_types = NULL,...) {
       super$initialize(
         # TODO: check variable types
         # TODO: support multi-level treatments and etc
@@ -76,14 +76,20 @@ tmle3_Spec_survival <- R6Class(
       control_value <- self$options$control_level
 
       treatment <- define_lf(LF_static, "A", value = treatment_value)
-      control <- define_lf(LF_static, "A", value = control_value)
 
       # TODO: currently support treatment specific
       # TODO: check
-      param_surv <- Param_survival$new(likelihood, treatment, 
+      param_surv_treat <- Param_survival$new(likelihood, treatment, 
                                        target_times = self$options$target_times, 
                                        outcome_node = "N")
-      tmle_params <- list(param_surv)
+      if (!is.null(control_value)) {
+        control <- define_lf(LF_static, "A", value = control_value)
+        param_surv_control <- Param_survival$new(likelihood, control, 
+          target_times = self$options$target_times, outcome_node = "N")
+        tmle_params <- list(param_surv_treat, param_surv_control)
+      } else {
+        tmle_params <- list(param_surv_treat)
+      }
       return(tmle_params)
     }
   ),
@@ -98,6 +104,6 @@ tmle3_Spec_survival <- R6Class(
 #' @param target_times the time points to be targeted at during the TMLE adjustment
 #' @export
 # TODO: check variable types
-tmle_survival <- function(treatment_level, control_level, target_times = NULL, variable_types = NULL) {
+tmle_survival <- function(treatment_level, control_level = NULL, target_times = NULL, variable_types = NULL) {
   tmle3_Spec_survival$new(treatment_level, control_level, target_times, variable_types)
 }

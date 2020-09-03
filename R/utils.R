@@ -90,6 +90,11 @@ summary_from_estimates <- function(task, estimates, param_types = NULL,
   psi_transformed <- mapply(apply_transform, psi, transforms[index_vec])
   ci_transformed <- mapply(apply_transform, ci, transforms[index_vec])
   ci_transformed <- matrix(ci_transformed, nrow = nrow(ci), ncol = ncol(ci))
+
+  # TODO: init_psi for multi-params
+  if (ncol(init_psi) > 1) {
+    init_psi <- Reshape(init_psi, nrow(init_psi) * ncol(init_psi))
+  }
   summary_dt <- as.data.table(list(
     param_types[index_vec],
     param_names, init_psi, psi, se, ci,
