@@ -3,7 +3,9 @@
 \name{Param_ATT}
 \alias{Param_ATT}
 \title{Additive Effect of Treatment Among the Treated}
-\format{\code{\link{R6Class}} object.}
+\format{
+\code{\link{R6Class}} object.
+}
 \value{
 \code{Param_base} object
 }

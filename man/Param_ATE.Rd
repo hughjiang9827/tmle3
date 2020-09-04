@@ -3,7 +3,9 @@
 \name{Param_ATE}
 \alias{Param_ATE}
 \title{Average Treatment Effect}
-\format{\code{\link{R6Class}} object.}
+\format{
+\code{\link{R6Class}} object.
+}
 \value{
 \code{Param_base} object
 }

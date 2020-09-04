@@ -3,7 +3,9 @@
 \name{Param_TSM}
 \alias{Param_TSM}
 \title{Treatment Specific Mean}
-\format{\code{\link{R6Class}} object.}
+\format{
+\code{\link{R6Class}} object.
+}
 \value{
 \code{Param_base} object
 }

@@ -3,7 +3,9 @@
 \name{Param_MSM}
 \alias{Param_MSM}
 \title{Stratified Parameter Estimates via MSM}
-\format{\code{\link{R6Class}} object.}
+\format{
+\code{\link{R6Class}} object.
+}
 \value{
 \code{Param_base} object
 }

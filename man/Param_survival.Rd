@@ -3,7 +3,13 @@
 \name{Param_survival}
 \alias{Param_survival}
 \title{Survival Curve}
+<<<<<<< HEAD
 \format{\code{\link{R6Class}} object.}
+=======
+\format{
+\code{\link{R6Class}} object.
+}
+>>>>>>> d006c0a59487a5ef2018c4b56aa485ef0bdb8958
 \value{
 \code{Param_base} object
 }

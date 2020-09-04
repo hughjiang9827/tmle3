@@ -3,7 +3,9 @@
 \name{Param_stratified}
 \alias{Param_stratified}
 \title{Stratified Parameter Estimates}
-\format{\code{\link{R6Class}} object.}
+\format{
+\code{\link{R6Class}} object.
+}
 \value{
 \code{Param_base} object
 }

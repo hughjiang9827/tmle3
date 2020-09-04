@@ -4,7 +4,9 @@
 \alias{tmle3_Fit}
 \alias{fit_tmle3}
 \title{TMLE fit object}
-\format{\code{\link{R6Class}} object.}
+\format{
+\code{\link{R6Class}} object.
+}
 \usage{
 fit_tmle3(...)
 }

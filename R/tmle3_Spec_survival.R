@@ -5,7 +5,6 @@
 #'
 #' @export
 #
-
 tmle3_Spec_survival <- R6Class(
   classname = "tmle3_Spec_survival",
   portable = TRUE,
@@ -17,9 +16,9 @@ tmle3_Spec_survival <- R6Class(
         # TODO: check variable types
         # TODO: support multi-level treatments and etc
         treatment_level = treatment_level,
-        control_level = control_level, 
-        variable_types = variable_types, 
-        target_times = target_times, 
+        control_level = control_level,
+        variable_types = variable_types,
+        target_times = target_times,
         ...
       )
     },
@@ -34,11 +33,11 @@ tmle3_Spec_survival <- R6Class(
 
       if (is.null(node_list$id)) {
         id <- 1:nrow(data)
-        data <- cbind(id=id, data)
+        data <- cbind(id = id, data)
         node_list$id <- "id"
       }
 
-      all_times <- lapply(k_grid, function(t_current){
+      all_times <- lapply(k_grid, function(t_current) {
         df_time <- copy(data)
         # TODO: check
         df_time$N <- as.numeric(t_current == T_tilde_data & Delta_data == 1)
@@ -50,18 +49,18 @@ tmle3_Spec_survival <- R6Class(
       df_long <- rbindlist(all_times)
 
       long_node_list <- copy(node_list)
-      long_node_list$time <- "t" 
-      long_node_list$N <- "N" 
+      long_node_list$time <- "t"
+      long_node_list$N <- "N"
       long_node_list$A_c <- "A_c"
       long_node_list$pre_failure <- "pre_failure"
 
-      return(list(long_data=df_long, long_node_list=long_node_list))
+      return(list(long_data = df_long, long_node_list = long_node_list))
     },
 
     make_tmle_task = function(data, node_list, ...) {
       variable_types <- self$options$variable_types
-      
-      tmle_task <- survival_tx_task(data, node_list, survival_tx_npsem, variable_types)
+
+      tmle_task <- survival_tx_task(data, node_list, variable_types)
 
       return(tmle_task)
     },
@@ -97,11 +96,14 @@ tmle3_Spec_survival <- R6Class(
   private = list()
 )
 
-# TODO
+#' Treatment Specific Survival
+#'
+#' See the associated handbook chapter
 #' @importFrom sl3 make_learner Lrnr_mean
 #' @param treatment_level the level of A that corresponds to treatment
 #' @param control_level the level of A that corresponds to a control or reference level
 #' @param target_times the time points to be targeted at during the TMLE adjustment
+#' @param ... others args passed to spec
 #' @export
 # TODO: check variable types
 tmle_survival <- function(treatment_level, control_level = NULL, target_times = NULL, variable_types = NULL) {

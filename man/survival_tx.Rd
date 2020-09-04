@@ -8,7 +8,11 @@
 \usage{
 survival_tx_npsem(node_list, variable_types = NULL)
 
+<<<<<<< HEAD
 survival_tx_task(data, node_list, make_npsem, variable_types = NULL, ...)
+=======
+survival_tx_task(data, node_list, variable_types = NULL, ...)
+>>>>>>> d006c0a59487a5ef2018c4b56aa485ef0bdb8958
 
 survival_tx_likelihood(tmle_task, learner_list)
 }

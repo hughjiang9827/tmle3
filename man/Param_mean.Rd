@@ -3,7 +3,9 @@
 \name{Param_mean}
 \alias{Param_mean}
 \title{Mean of Outcome Node}
-\format{\code{\link{R6Class}} object.}
+\format{
+\code{\link{R6Class}} object.
+}
 \value{
 \code{Param_base} object
 }
